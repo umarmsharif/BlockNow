@@ -1,5 +1,6 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
+import heroVideo from "@assets/Suggestion_2_1770294627865.mp4";
 
 export function BrandMark({
   className,
@@ -16,15 +17,22 @@ export function BrandMark({
         className="
           h-10 w-10 sm:h-11 sm:w-11
           grid place-items-center
+          relative
+          overflow-hidden
+          rounded-xl
         "
         aria-hidden="true"
       >
-        <div
-          className="
-            grid place-items-center
-          "
-        >
-          <span className="text-gradient text-2xl sm:text-3xl font-bold leading-none">B</span>
+        <video
+          className="absolute inset-0 w-full h-full object-cover opacity-60 scale-150"
+          src={heroVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+        <div className="relative z-10 grid place-items-center">
+          <span className="text-gradient text-2xl sm:text-3xl font-bold leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">B</span>
         </div>
       </div>
 

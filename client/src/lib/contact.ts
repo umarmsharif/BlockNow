@@ -5,7 +5,7 @@ export const CONTACT = contactInfo;
 /**
  * WhatsApp number provided by the user.
  */
-export const WHATSAPP_E164: string | null = "02034791300";
+export const WHATSAPP_E164: string | null = "+442034791300";
 
 export function getWhatsAppHref() {
   if (!WHATSAPP_E164) return null;

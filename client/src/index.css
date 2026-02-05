@@ -197,7 +197,6 @@
     filter: blur(0.6px);
     opacity: 0.55;
     z-index: -2;
-    animation: neon-spin 10s linear infinite;
   }
   .neon-frame::after {
     content: "";
