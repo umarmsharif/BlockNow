@@ -183,16 +183,16 @@ export default function Home() {
                   <div className="glass rounded-2xl p-4">
                     <div className="flex items-center gap-2 text-sm font-semibold">
                       <MessagesSquare className="h-4 w-4 text-accent" />
-                      Fewer missed messages
+                      No more missed clients
                     </div>
                     <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
-                      Clients get answers even when your team is busy.
+                      No more clients waiting in queues—your agent answers instantly.
                     </p>
                   </div>
                   <div className="glass rounded-2xl p-4">
                     <div className="flex items-center gap-2 text-sm font-semibold">
                       <Zap className="h-4 w-4 text-accent" />
-                      Faster confirmations
+                      Faster customer journey
                     </div>
                     <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
                       Reduce waiting time and friction in booking.
@@ -214,8 +214,8 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeading
               eyebrow="Why businesses choose BlockNow"
-              title="A calmer front desk, a faster customer journey"
-              description="Reduce queues and delays, lower error rates, and remove communication barriers—without hiring more staff."
+              title="A reliable front desk, a faster customer journey"
+              description="Eliminate queues and delays, remove human errors, and remove communication barriers—without hiring more staff."
               data-testid="benefits-heading"
             />
 
@@ -231,15 +231,15 @@ export default function Home() {
                 testId="benefit-errors"
                 tone="primary"
                 icon={<Workflow className="h-4 w-4" />}
-                title="Fewer human errors"
-                description="Standardised flows reduce missed details, double bookings, and miscommunication."
+                title="No human errors"
+                description="Standardised flows eliminate missed details, double bookings, and miscommunication."
               />
               <BenefitCard
                 testId="benefit-queue"
                 tone="violet"
                 icon={<Sparkles className="h-4 w-4" />}
-                title="Shorter queues"
-                description="Clients get instant answers and availability—cutting back-and-forth and drop-offs."
+                title="No waiting queues"
+                description="Clients are served instantly with answers and availability—cutting back-and-forth and drop-offs."
               />
               <BenefitCard
                 testId="benefit-comms"
@@ -284,18 +284,18 @@ export default function Home() {
                       {[
                         {
                           icon: <MessagesSquare className="h-4 w-4" />,
-                          title: "Client starts a chat",
+                          title: "Clients talk to Agent",
                           body: "From your site, WhatsApp, or a widget—your agent answers instantly.",
                         },
                         {
                           icon: <Sparkles className="h-4 w-4" />,
-                          title: "Agent qualifies the request",
-                          body: "Collects the right details and handles common questions without confusion.",
+                          title: "Agent assesses the request",
+                          body: "The agent assesses their talk, responds, and works out the request details without confusion.",
                         },
                         {
                           icon: <CalendarCheck className="h-4 w-4" />,
-                          title: "Books the appointment",
-                          body: "Suggests times and confirms the slot with clarity and speed.",
+                          title: "Provides the requested slot",
+                          body: "Works out with them to provide the requested slot for appointments with clarity and speed.",
                         },
                       ].map((s, idx) => (
                         <li key={s.title} className="flex gap-4">

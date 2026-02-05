@@ -3,10 +3,9 @@ import { contactInfo } from "@shared/schema";
 export const CONTACT = contactInfo;
 
 /**
- * WhatsApp number was not provided by the user.
- * Set this to an E.164 number without spaces, e.g. "+447700900123"
+ * WhatsApp number provided by the user.
  */
-export const WHATSAPP_E164: string | null = null;
+export const WHATSAPP_E164: string | null = "02034791300";
 
 export function getWhatsAppHref() {
   if (!WHATSAPP_E164) return null;
