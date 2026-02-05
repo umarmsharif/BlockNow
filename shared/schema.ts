@@ -1,18 +1,28 @@
-import { sql } from "drizzle-orm";
-import { pgTable, text, varchar } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const users = pgTable("users", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  username: text("username").notNull().unique(),
-  password: text("password").notNull(),
+export const contactInfo = {
+  businessName: "BlockNow",
+  email: "Info@blocknow.co.uk",
+  phone: "02034791300",
+  address: "Unit 8A , Midas Business Centre,Wantz Road,Dagenham,RM10 8PS.UK",
+  registeredIn: "United Kingdom",
+} as const;
+
+export const demoRequestSchema = z.object({
+  firstName: z.string().trim().min(1, "First name is required"),
+  lastName: z.string().trim().min(1, "Last name is required"),
+  email: z.string().trim().email("Enter a valid email"),
+  role: z.string().trim().optional().default(""),
+  businessName: z.string().trim().optional().default(""),
+  otherInfo: z.string().trim().optional().default(""),
+  desiredSlotDate: z.string().trim().min(1, "Preferred date is required"),
 });
 
-export const insertUserSchema = createInsertSchema(users).pick({
-  username: true,
-  password: true,
-});
+export type DemoRequest = z.infer<typeof demoRequestSchema>;
 
-export type InsertUser = z.infer<typeof insertUserSchema>;
-export type User = typeof users.$inferSelect;
+export type CreateDemoRequest = DemoRequest;
+
+export type DemoRequestResponse = {
+  ok: true;
+  message: string;
+};

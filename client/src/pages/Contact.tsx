@@ -1,0 +1,237 @@
+import * as React from "react";
+import { Link } from "wouter";
+import { Mail, Phone, MapPin, ShieldCheck, MessageCircle, ArrowRight } from "lucide-react";
+
+import { applySeo } from "@/lib/seo";
+import { CONTACT, getWhatsAppHref } from "@/lib/contact";
+
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SectionHeading } from "@/components/SectionHeading";
+import { DemoRequestDialog } from "@/components/DemoRequestDialog";
+import { NeonButton } from "@/components/NeonButton";
+import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+
+function usePageSeo() {
+  React.useEffect(() => {
+    applySeo({
+      title: "Contact BlockNow — Email, phone & address",
+      description:
+        "Get in touch with BlockNow. Find our email, phone, address, and request a demo slot for our AI booking agent.",
+    });
+  }, []);
+}
+
+function InfoCard({
+  icon,
+  label,
+  value,
+  href,
+  testId,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: React.ReactNode;
+  href?: string;
+  testId: string;
+}) {
+  const content = (
+    <div
+      className="
+        glass rounded-3xl border border-border/70 p-6
+        shadow-[0_30px_90px_hsl(var(--foreground)/0.10)]
+        hover-lift
+      "
+      data-testid={testId}
+    >
+      <div className="flex items-start gap-4">
+        <div className="h-11 w-11 rounded-2xl bg-gradient-to-br from-primary/22 via-accent/10 to-transparent border border-border/70 grid place-items-center text-accent">
+          {icon}
+        </div>
+        <div className="min-w-0">
+          <div className="text-xs font-bold text-muted-foreground">{label}</div>
+          <div className="mt-1 text-sm sm:text-base font-semibold break-words">{value}</div>
+        </div>
+      </div>
+    </div>
+  );
+
+  if (!href) return content;
+
+  return (
+    <a
+      href={href}
+      className="block focus:outline-none focus:ring-4 focus:ring-[hsl(var(--accent)/0.16)] rounded-3xl"
+      data-testid={`${testId}-link`}
+    >
+      {content}
+    </a>
+  );
+}
+
+export default function Contact() {
+  usePageSeo();
+  const waHref = getWhatsAppHref();
+
+  return (
+    <div className="min-h-screen bg-mesh noise-overlay">
+      <SiteHeader />
+
+      <main className="pt-10 sm:pt-14 lg:pt-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="animate-in-up" style={{ animationDelay: "40ms" }}>
+            <SectionHeading
+              eyebrow="Contact"
+              title="Talk to BlockNow"
+              description="Email, phone, address—and a fast demo request form. Choose what’s easiest."
+              data-testid="contact-heading"
+            />
+          </div>
+
+          <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            <div className="lg:col-span-6 space-y-5">
+              <InfoCard
+                testId="contact-card-email"
+                icon={<Mail className="h-5 w-5" />}
+                label="Email"
+                value={CONTACT.email}
+                href={`mailto:${CONTACT.email}`}
+              />
+              <InfoCard
+                testId="contact-card-phone"
+                icon={<Phone className="h-5 w-5" />}
+                label="Phone"
+                value={CONTACT.phone}
+                href={`tel:${CONTACT.phone}`}
+              />
+              <InfoCard
+                testId="contact-card-address"
+                icon={<MapPin className="h-5 w-5" />}
+                label="Address"
+                value={CONTACT.address}
+              />
+              <InfoCard
+                testId="contact-card-registered"
+                icon={<ShieldCheck className="h-5 w-5" />}
+                label="Registered"
+                value={`Registered in the ${CONTACT.registeredIn}`}
+              />
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <span>
+                      <Button
+                        type="button"
+                        variant="secondary"
+                        onClick={() => {
+                          if (!waHref) return;
+                          window.open(waHref, "_blank", "noopener,noreferrer");
+                        }}
+                        disabled={!waHref}
+                        data-testid="contact-whatsapp"
+                        className="
+                          h-12 w-full rounded-xl
+                          border border-border/70 bg-secondary/70 hover:bg-secondary
+                          transition-all duration-200
+                        "
+                      >
+                        <MessageCircle className="h-4 w-4 mr-2" />
+                        WhatsApp
+                        <ArrowRight className="h-4 w-4 ml-2 opacity-70" />
+                      </Button>
+                    </span>
+                  </TooltipTrigger>
+                  <TooltipContent className="max-w-xs bg-popover/90 backdrop-blur border border-border/70">
+                    {waHref ? (
+                      <p className="text-sm">Open WhatsApp Web</p>
+                    ) : (
+                      <p className="text-sm">
+                        WhatsApp number not set. Update <span className="font-semibold">WHATSAPP_E164</span> in{" "}
+                        <span className="font-semibold">client/src/lib/contact.ts</span>.
+                      </p>
+                    )}
+                  </TooltipContent>
+                </Tooltip>
+
+                <Link
+                  href="/"
+                  className="
+                    inline-flex items-center justify-center h-12 w-full
+                    rounded-xl border border-border/70 bg-card/60 backdrop-blur
+                    text-sm font-semibold
+                    hover:bg-card/80 hover:-translate-y-0.5 active:translate-y-0
+                    transition-all duration-200
+                  "
+                  data-testid="contact-back-home"
+                >
+                  Back to Home
+                </Link>
+              </div>
+            </div>
+
+            <div className="lg:col-span-6">
+              <div className="neon-frame noise-overlay shadow-[0_50px_140px_hsl(var(--accent)/0.12)]">
+                <div className="p-6 sm:p-7">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <div className="text-xs font-bold text-muted-foreground" data-testid="contact-form-eyebrow">
+                        Request a demo
+                      </div>
+                      <h2 className="mt-2 text-2xl sm:text-3xl font-bold leading-tight" data-testid="contact-form-title">
+                        Book a preferred slot — we’ll confirm by email.
+                      </h2>
+                      <p className="mt-2 text-sm text-muted-foreground leading-relaxed" data-testid="contact-form-subtitle">
+                        Share the date you want, and a few details about your business. We’ll follow up with next steps.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-6">
+                    <DemoRequestDialog
+                      context="contact"
+                      trigger={
+                        <NeonButton data-testid="contact-open-demo" className="h-12 px-6 w-full sm:w-auto">
+                          Open demo request form <ArrowRight className="h-4 w-4 ml-2" />
+                        </NeonButton>
+                      }
+                      onOpenChange={() => {}}
+                    />
+                  </div>
+
+                  <div className="mt-6 rounded-2xl border border-border/70 bg-card/40 p-5">
+                    <div className="text-sm font-bold" data-testid="contact-note-title">
+                      Prefer to email directly?
+                    </div>
+                    <p className="mt-1 text-sm text-muted-foreground" data-testid="contact-note-body">
+                      Send us a note at{" "}
+                      <a
+                        href={`mailto:${CONTACT.email}`}
+                        className="font-semibold text-foreground hover:underline underline-offset-4"
+                        data-testid="contact-email-inline"
+                      >
+                        {CONTACT.email}
+                      </a>{" "}
+                      and we’ll respond as soon as possible.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-4 glass rounded-3xl border border-border/70 p-5">
+                <div className="text-xs font-bold text-muted-foreground">Tip</div>
+                <p className="mt-1 text-sm text-muted-foreground leading-relaxed" data-testid="contact-tip">
+                  To enable WhatsApp, set <span className="font-semibold">WHATSAPP_E164</span> in{" "}
+                  <span className="font-semibold">client/src/lib/contact.ts</span> (E.164 format, e.g. +447700900123).
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <SiteFooter />
+    </div>
+  );
+}
