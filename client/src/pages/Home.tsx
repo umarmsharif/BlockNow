@@ -75,23 +75,23 @@ export default function Home() {
                   "
                   data-testid="hero-title"
                 >
-                  Let clients <span className="text-gradient">chat</span>.{" "}
-                  <span className="neon-underline">Book</span> appointments automatically.
+                  Your AI <span className="text-gradient">receptionist</span>.{" "}
+                  Handles <span className="neon-underline">calls</span>, chats, and bookings — 24/7.
                 </h1>
 
                 <p
                   className="mt-5 text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed max-w-xl"
                   data-testid="hero-subtitle"
                 >
-                  BlockNow gives your business an AI agent trained to handle questions, confirmations, and scheduling—
-                  24/7—without queues, missed calls, or human slip-ups.
+                  BlockNow gives your GP practice an AI agent trained to answer patient calls, handle enquiries, and book appointments—
+                  24/7—without queues, missed calls, or overloaded reception staff.
                 </p>
 
                 <div className="mt-7 flex flex-col sm:flex-row gap-3 sm:items-center">
                   <DemoRequestDialog
                     context="site"
                     trigger={
-                      <NeonButton data-testid="hero-cta-demo" className="h-12 px-6">
+                      <NeonButton data-testid="hero-cta-demo" className="h-12 px-6 w-fit">
                         Request a demo <ArrowRight className="h-4 w-4 ml-2 opacity-90" />
                       </NeonButton>
                     }
@@ -129,7 +129,7 @@ export default function Home() {
                         shadow-[0_18px_60px_hsl(var(--foreground)/0.06)]
                       "
                     >
-                      <div className="flex items-center gap-2 text-sm font-semibold">
+                      <div className="flex items-center gap-2 text-sm font-semibold whitespace-nowrap">
                         <span className="text-accent">{m.icon}</span>
                         <span>{m.label}</span>
                       </div>
@@ -461,7 +461,7 @@ export default function Home() {
                       <DemoRequestDialog
                         context="site"
                         trigger={
-                          <NeonButton data-testid="final-cta-demo" className="h-12 w-full sm:w-auto px-6">
+                          <NeonButton data-testid="final-cta-demo" className="h-12 w-fit sm:w-auto px-6">
                             Request a demo
                             <ArrowRight className="h-4 w-4 ml-2" />
                           </NeonButton>

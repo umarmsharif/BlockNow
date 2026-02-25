@@ -219,13 +219,6 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="mt-4 glass rounded-3xl border border-border/70 p-5">
-                <div className="text-xs font-bold text-muted-foreground">Tip</div>
-                <p className="mt-1 text-sm text-muted-foreground leading-relaxed" data-testid="contact-tip">
-                  To enable WhatsApp, set <span className="font-semibold">WHATSAPP_E164</span> in{" "}
-                  <span className="font-semibold">client/src/lib/contact.ts</span> (E.164 format, e.g. +447700900123).
-                </p>
-              </div>
             </div>
           </div>
         </div>

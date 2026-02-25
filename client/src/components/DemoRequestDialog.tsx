@@ -70,9 +70,9 @@ export function DemoRequestDialog({
         )}
         data-testid={`demo-dialog-${context}`}
       >
-        <div className="p-6 sm:p-7">
+        <div className="p-6 sm:p-7 pt-8 sm:pt-9">
           <DialogHeader>
-            <DialogTitle className="text-2xl sm:text-3xl">
+            <DialogTitle className="text-2xl sm:text-3xl leading-tight">
               Request a <span className="text-gradient">demo</span>
             </DialogTitle>
             <p className="mt-2 text-sm text-muted-foreground leading-relaxed" data-testid="demo-dialog-subtitle">

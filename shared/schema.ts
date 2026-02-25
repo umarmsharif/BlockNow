@@ -4,7 +4,7 @@ export const contactInfo = {
   businessName: "BlockNow",
   email: "Info@blocknow.co.uk",
   phone: "02034791300",
-  address: "Unit 8A , Midas Business Centre,Wantz Road,Dagenham,RM10 8PS.UK",
+  address: "Unit 8A, Midas Business Centre, Wantz Road, Dagenham, RM10 8PS, UK",
   registeredIn: "United Kingdom",
 } as const;
 

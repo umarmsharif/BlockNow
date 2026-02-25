@@ -29,7 +29,7 @@ export function NeonButton({ className, ...props }: ButtonProps) {
           transition-opacity duration-300
         "
       />
-      <span className="relative">{props.children}</span>
+      <span className="relative inline-flex items-center whitespace-nowrap">{props.children}</span>
     </Button>
   );
 }
