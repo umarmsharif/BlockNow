@@ -106,6 +106,13 @@ export default function Contact() {
                 href={`tel:${CONTACT.phone}`}
               />
               <InfoCard
+                testId="contact-card-mobile"
+                icon={<Phone className="h-5 w-5" />}
+                label="Mobile"
+                value={CONTACT.mobile}
+                href={`tel:${CONTACT.mobile.replace(/\s+/g, "")}`}
+              />
+              <InfoCard
                 testId="contact-card-address"
                 icon={<MapPin className="h-5 w-5" />}
                 label="Address"

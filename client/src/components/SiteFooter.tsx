@@ -44,6 +44,17 @@ export function SiteFooter() {
                 </div>
 
                 <div className="flex items-start gap-3">
+                  <Phone className="h-4 w-4 mt-0.5 text-accent" />
+                  <a
+                    href={`tel:${CONTACT.mobile.replace(/\s+/g, "")}`}
+                    className="text-foreground/90 hover:text-foreground hover:underline underline-offset-4 transition"
+                    data-testid="footer-mobile"
+                  >
+                    {CONTACT.mobile}
+                  </a>
+                </div>
+
+                <div className="flex items-start gap-3">
                   <MapPin className="h-4 w-4 mt-0.5 text-accent" />
                   <p className="text-foreground/85" data-testid="footer-address">
                     {CONTACT.address}
