@@ -11,10 +11,10 @@ export function SiteFooter() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
             <div className="md:col-span-5">
-              <BrandMark badge="AI appointment booking, done right." />
+              <BrandMark badge="AI receptionist for GP practices & dental clinics" />
               <p className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-md" data-testid="footer-tagline">
-                BlockNow helps businesses deploy an always-on AI agent that chats with clients and books appointments
-                with speed, clarity, and consistency—24/7.
+                BlockNow answers every patient call, books appointments in real time, and works 24/7 — so your
+                reception team can focus on the patients in front of them.
               </p>
             </div>
 
@@ -64,7 +64,7 @@ export function SiteFooter() {
                 <div className="flex items-start gap-3">
                   <ShieldCheck className="h-4 w-4 mt-0.5 text-accent" />
                   <p className="text-foreground/85" data-testid="footer-registered">
-                    Registered in {CONTACT.registeredIn}
+                    GDPR Compliant &middot; Registered in {CONTACT.registeredIn}
                   </p>
                 </div>
               </div>

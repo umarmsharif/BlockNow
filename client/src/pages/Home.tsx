@@ -11,6 +11,10 @@ import {
   Zap,
   MessagesSquare,
   Workflow,
+  BadgeCheck,
+  Globe,
+  Phone,
+  Check,
 } from "lucide-react";
 
 import { applySeo } from "@/lib/seo";
@@ -26,9 +30,9 @@ import heroVideo from "@assets/Suggestion_2_1770294627865.mp4";
 function usePageSeo() {
   React.useEffect(() => {
     applySeo({
-      title: "BlockNow — AI agents that chat & book appointments 24/7",
+      title: "BlockNow — AI Receptionist for GP Practices & Dental Clinics",
       description:
-        "BlockNow provides businesses with an AI agent that answers client questions and books appointments around the clock—reducing queues, errors, and missed calls.",
+        "BlockNow gives NHS GP surgeries and dental practices an AI receptionist that answers every patient call, books appointments 24/7, and eliminates the 8am phone rush.",
     });
   }, []);
 }
@@ -66,7 +70,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
               <div className="lg:col-span-6 animate-in-up" style={{ animationDelay: "30ms" }}>
-                <Pill testId="hero-pill">Industry-agnostic AI booking agent</Pill>
+                <Pill testId="hero-pill">AI receptionist for NHS GP practices & dental clinics</Pill>
 
                 <h1
                   id={heroId}
@@ -75,16 +79,16 @@ export default function Home() {
                   "
                   data-testid="hero-title"
                 >
-                  Your AI <span className="text-gradient">receptionist</span>.{" "}
-                  Handles <span className="neon-underline">calls</span>, chats, and bookings — 24/7.
+                  Never miss a <span className="text-gradient">patient call</span> again.{" "}
+                  <span className="neon-underline">24/7</span> AI receptionist for your surgery.
                 </h1>
 
                 <p
                   className="mt-5 text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed max-w-xl"
                   data-testid="hero-subtitle"
                 >
-                  BlockNow gives your GP practice an AI agent trained to answer patient calls, handle enquiries, and book appointments—
-                  24/7—without queues, missed calls, or overloaded reception staff.
+                  BlockNow answers every patient call instantly — during the 8am rush, lunch hour, and out of hours.
+                  Books, reschedules, and cancels appointments in real time. Your reception team focuses on the patients in front of them.
                 </p>
 
                 <div className="mt-7 flex flex-col sm:flex-row gap-3 sm:items-center">
@@ -92,16 +96,21 @@ export default function Home() {
                     context="site"
                     trigger={
                       <NeonButton data-testid="hero-cta-demo" className="h-12 px-6 w-fit">
-                        Request a demo <ArrowRight className="h-4 w-4 ml-2 opacity-90" />
+                        Book a free demo <ArrowRight className="h-4 w-4 ml-2 opacity-90" />
                       </NeonButton>
                     }
                     onOpenChange={() => {}}
                   />
 
-                  <Link
-                    href="/contact"
+                  <Button
+                    type="button"
+                    variant="secondary"
+                    onClick={() => {
+                      const el = document.getElementById("pricing");
+                      el?.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }}
+                    data-testid="hero-cta-pricing"
                     className="
-                      group inline-flex items-center justify-center
                       h-12 rounded-xl px-6
                       border border-border/70 bg-card/60 backdrop-blur
                       text-sm font-semibold
@@ -109,18 +118,16 @@ export default function Home() {
                       hover:bg-card/80 hover:-translate-y-0.5 active:translate-y-0
                       transition-all duration-200
                     "
-                    data-testid="hero-cta-contact"
                   >
-                    Contact details
-                    <ArrowRight className="h-4 w-4 ml-2 opacity-70 group-hover:translate-x-0.5 transition-transform" />
-                  </Link>
+                    See pricing
+                  </Button>
                 </div>
 
                 <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3" data-testid="hero-metrics">
                   {[
-                    { icon: <Clock className="h-4 w-4" />, label: "24/7 coverage" },
-                    { icon: <CalendarCheck className="h-4 w-4" />, label: "Instant bookings" },
-                    { icon: <ShieldCheck className="h-4 w-4" />, label: "Consistent answers" },
+                    { icon: <Zap className="h-4 w-4" />, label: "Answers in under 3 seconds" },
+                    { icon: <Phone className="h-4 w-4" />, label: "Unlimited simultaneous calls" },
+                    { icon: <Clock className="h-4 w-4" />, label: "24/7, 365 days a year" },
                   ].map((m) => (
                     <div
                       key={m.label}
@@ -163,10 +170,10 @@ export default function Home() {
                           </div>
                           <div className="flex-1">
                             <div className="text-sm font-bold" data-testid="hero-card-title">
-                              “Hi — I can book that for you.”
+                              "Good morning — I can book that for you."
                             </div>
                             <p className="mt-1 text-xs text-muted-foreground leading-relaxed" data-testid="hero-card-body">
-                              A branded AI agent that answers questions and confirms your next available slot in seconds.
+                              An AI receptionist that answers patient calls, handles enquiries, and confirms the next available appointment in seconds.
                             </p>
                           </div>
                           <div className="hidden sm:flex items-center gap-2 text-xs font-semibold text-muted-foreground">
@@ -183,19 +190,19 @@ export default function Home() {
                   <div className="glass rounded-2xl p-4">
                     <div className="flex items-center gap-2 text-sm font-semibold">
                       <MessagesSquare className="h-4 w-4 text-accent" />
-                      No more missed clients
+                      No more missed patients
                     </div>
                     <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
-                      No more clients waiting in queues—your agent answers instantly.
+                      Every call answered instantly — no more patients lost to voicemail or engaged tones.
                     </p>
                   </div>
                   <div className="glass rounded-2xl p-4">
                     <div className="flex items-center gap-2 text-sm font-semibold">
                       <Zap className="h-4 w-4 text-accent" />
-                      Faster customer journey
+                      End the 8am rush
                     </div>
                     <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
-                      Reduce waiting time and friction in booking.
+                      AI handles unlimited calls simultaneously. No queues, no busy signal.
                     </p>
                   </div>
                 </div>
@@ -209,13 +216,34 @@ export default function Home() {
           </div>
         </section>
 
+        {/* TRUST BADGES */}
+        <section className="mt-10 sm:mt-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10">
+              {[
+                { icon: <ShieldCheck className="h-5 w-5" />, label: "GDPR Compliant" },
+                { icon: <Globe className="h-5 w-5" />, label: "Data Hosted in the UK" },
+                { icon: <BadgeCheck className="h-5 w-5" />, label: "ICO Registration in Progress" },
+              ].map((badge) => (
+                <div
+                  key={badge.label}
+                  className="flex items-center gap-2 text-sm font-semibold text-muted-foreground"
+                >
+                  <span className="text-accent">{badge.icon}</span>
+                  {badge.label}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* BENEFITS */}
         <section className="mt-14 sm:mt-16 lg:mt-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeading
-              eyebrow="Why businesses choose BlockNow"
-              title="A reliable front desk, a faster customer journey"
-              description="Eliminate queues and delays, remove human errors, and remove communication barriers—without hiring more staff."
+              eyebrow="Why practices choose BlockNow"
+              title="Your reception team, reinforced"
+              description="Eliminate phone queues, capture every patient call, and free your staff to focus on the patients in front of them."
               data-testid="benefits-heading"
             />
 
@@ -225,42 +253,42 @@ export default function Home() {
                 tone="accent"
                 icon={<Clock className="h-4 w-4" />}
                 title="24/7 availability"
-                description="Your AI agent handles inquiries and bookings day or night—no waiting for office hours."
+                description="Patients can book, reschedule, or cancel appointments any time — evenings, weekends, bank holidays."
               />
               <BenefitCard
-                testId="benefit-errors"
+                testId="benefit-8am"
                 tone="primary"
-                icon={<Workflow className="h-4 w-4" />}
-                title="No human errors"
-                description="Standardised flows eliminate missed details, double bookings, and miscommunication."
+                icon={<Zap className="h-4 w-4" />}
+                title="End the 8am rush"
+                description="AI handles unlimited simultaneous calls. No more patients redialling for 45 minutes to get through."
               />
               <BenefitCard
                 testId="benefit-queue"
                 tone="violet"
                 icon={<Sparkles className="h-4 w-4" />}
                 title="No waiting queues"
-                description="Clients are served instantly with answers and availability—cutting back-and-forth and drop-offs."
+                description="Patients are served instantly — no hold music, no 'press 1 for...' menus, no callbacks needed."
               />
               <BenefitCard
-                testId="benefit-comms"
+                testId="benefit-errors"
                 tone="primary"
-                icon={<Headphones className="h-4 w-4" />}
-                title="Clear, consistent communication"
-                description="A trained agent delivers the same quality information to every client, every time."
+                icon={<Workflow className="h-4 w-4" />}
+                title="No booking errors"
+                description="AI checks your real-time calendar before confirming. No double bookings, no missed details."
               />
               <BenefitCard
                 testId="benefit-booking"
                 tone="accent"
                 icon={<CalendarCheck className="h-4 w-4" />}
-                title="Faster booking confirmations"
-                description="From question to confirmed slot—clients complete bookings in a single conversation."
+                title="Instant confirmations"
+                description="Patient hangs up with a confirmed appointment. No 'we'll call you back' — it's done."
               />
               <BenefitCard
-                testId="benefit-trust"
+                testId="benefit-staff"
                 tone="violet"
-                icon={<ShieldCheck className="h-4 w-4" />}
-                title="Professional experience"
-                description="A premium experience that feels attentive, responsive, and reliable."
+                icon={<Headphones className="h-4 w-4" />}
+                title="Free your reception team"
+                description="Staff focus on patients in the surgery instead of juggling phones. Better experience for everyone."
               />
             </div>
           </div>
@@ -271,8 +299,8 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeading
               eyebrow="How it works"
-              title="From first question to booked slot"
-              description="A simple, high-converting flow that feels natural to customers."
+              title="From patient call to booked appointment"
+              description="A simple flow that feels natural to patients and works with your existing systems."
               data-testid="how-heading"
             />
 
@@ -283,19 +311,19 @@ export default function Home() {
                     <ol className="space-y-5" data-testid="how-steps">
                       {[
                         {
-                          icon: <MessagesSquare className="h-4 w-4" />,
-                          title: "Clients talk to Agent",
-                          body: "From your site, WhatsApp, or a widget—your agent answers instantly.",
+                          icon: <Phone className="h-4 w-4" />,
+                          title: "Patient calls your surgery",
+                          body: "AI answers instantly — no hold music, no engaged tone. Greets with your practice name.",
                         },
                         {
                           icon: <Sparkles className="h-4 w-4" />,
-                          title: "Agent assesses the request",
-                          body: "The agent assesses their talk, responds, and works out the request details without confusion.",
+                          title: "AI handles the request",
+                          body: "Books, reschedules, or cancels appointments. Checks your live calendar for availability. Sounds natural, not robotic.",
                         },
                         {
                           icon: <CalendarCheck className="h-4 w-4" />,
-                          title: "Provides the requested slot",
-                          body: "Works out with them to provide the requested slot for appointments with clarity and speed.",
+                          title: "Appointment confirmed instantly",
+                          body: "Patient hangs up with a confirmed booking. Appointment appears in your calendar immediately.",
                         },
                       ].map((s, idx) => (
                         <li key={s.title} className="flex gap-4">
@@ -326,7 +354,7 @@ export default function Home() {
                         context="site"
                         trigger={
                           <NeonButton data-testid="how-cta-demo" className="h-12 px-6">
-                            Book a demo slot <ArrowRight className="h-4 w-4 ml-2" />
+                            Book a free demo <ArrowRight className="h-4 w-4 ml-2" />
                           </NeonButton>
                         }
                         onOpenChange={() => {}}
@@ -351,18 +379,18 @@ export default function Home() {
               <div className="lg:col-span-5">
                 <div className="glass rounded-3xl p-6 sm:p-7 border border-border/70 shadow-[0_30px_90px_hsl(var(--foreground)/0.10)]">
                   <div className="text-sm font-bold" data-testid="how-panel-title">
-                    Designed for real-world businesses
+                    Built for GP surgeries and dental practices
                   </div>
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed" data-testid="how-panel-body">
-                    Whether you run a clinic, salon, consultancy, gym, or service business—BlockNow can shape the same
-                    booking experience to fit your tone, your services, and your rules.
+                    Whether you run an NHS GP surgery, a private practice, or a dental clinic — BlockNow handles patient calls
+                    with the right tone, your opening hours, and your booking rules.
                   </p>
 
                   <div className="mt-5 grid grid-cols-1 gap-3" data-testid="how-panel-points">
                     {[
-                      { icon: <Bot className="h-4 w-4" />, text: "Consistent brand voice" },
-                      { icon: <ShieldCheck className="h-4 w-4" />, text: "Polished client experience" },
-                      { icon: <Workflow className="h-4 w-4" />, text: "Clear booking workflows" },
+                      { icon: <Bot className="h-4 w-4" />, text: "Natural, human-like voice" },
+                      { icon: <ShieldCheck className="h-4 w-4" />, text: "GDPR compliant, UK-hosted data" },
+                      { icon: <Workflow className="h-4 w-4" />, text: "Works with your existing calendar" },
                     ].map((p) => (
                       <div
                         key={p.text}
@@ -389,11 +417,99 @@ export default function Home() {
                       data-testid="how-contact-card"
                     >
                       <div>
-                        <div className="text-sm font-bold">Prefer email or phone?</div>
-                        <div className="mt-1 text-xs text-muted-foreground">Contact details and WhatsApp option</div>
+                        <div className="text-sm font-bold">Prefer email?</div>
+                        <div className="mt-1 text-xs text-muted-foreground">Contact details and demo request form</div>
                       </div>
                       <ArrowRight className="h-4 w-4 opacity-80 group-hover:translate-x-0.5 transition-transform" />
                     </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* PRICING */}
+            <div id="pricing" className="mt-16 sm:mt-20">
+              <SectionHeading
+                eyebrow="Pricing"
+                title="Less than a part-time receptionist"
+                description="Transparent pricing. No hidden fees. Free setup for our first 5 practices."
+                data-testid="pricing-heading"
+              />
+
+              <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-5">
+                {/* Launch offer */}
+                <div className="neon-frame noise-overlay">
+                  <div className="p-6 sm:p-7">
+                    <div className="inline-flex items-center gap-2 text-xs font-bold text-accent">
+                      <span className="h-2 w-2 rounded-full bg-accent shadow-[0_0_0_4px_hsl(var(--accent)/0.12)]" />
+                      Launch offer — first 5 practices
+                    </div>
+                    <div className="mt-3">
+                      <div className="text-3xl sm:text-4xl font-bold">
+                        <span className="line-through text-muted-foreground text-xl mr-2">£1,499</span>
+                        £0 <span className="text-base font-semibold text-muted-foreground">setup</span>
+                      </div>
+                      <div className="mt-1 text-2xl font-bold">
+                        £499<span className="text-base font-semibold text-muted-foreground">/month</span>
+                      </div>
+                    </div>
+                    <p className="mt-3 text-sm text-muted-foreground">
+                      + infrastructure costs (~£200-400/mo based on call volume, billed transparently)
+                    </p>
+                    <ul className="mt-5 space-y-2">
+                      {[
+                        "AI receptionist answering all calls 24/7",
+                        "Appointment booking, rescheduling, cancellation",
+                        "Full dashboard — calls, appointments, analytics",
+                        "Calendar integration (Google / Outlook)",
+                        "Monthly performance reports",
+                        "Setup in under a week",
+                      ].map((item) => (
+                        <li key={item} className="flex items-start gap-2 text-sm">
+                          <Check className="h-4 w-4 text-accent mt-0.5 flex-none" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-6">
+                      <DemoRequestDialog
+                        context="site"
+                        trigger={
+                          <NeonButton data-testid="pricing-cta" className="h-12 px-6 w-full">
+                            Claim your spot <ArrowRight className="h-4 w-4 ml-2" />
+                          </NeonButton>
+                        }
+                        onOpenChange={() => {}}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* ROI card */}
+                <div className="glass rounded-3xl p-6 sm:p-7 border border-border/70 shadow-[0_30px_90px_hsl(var(--foreground)/0.10)]">
+                  <div className="text-sm font-bold">Why it pays for itself</div>
+                  <div className="mt-4 space-y-4">
+                    <div className="rounded-2xl border border-border/60 bg-card/40 p-4">
+                      <div className="text-xs font-bold text-muted-foreground">The problem</div>
+                      <p className="mt-1 text-sm">
+                        The average GP surgery misses <span className="font-bold text-foreground">13-40% of patient calls</span>.
+                        During the 8am rush, some practices report over 40% going unanswered.
+                      </p>
+                    </div>
+                    <div className="rounded-2xl border border-border/60 bg-card/40 p-4">
+                      <div className="text-xs font-bold text-muted-foreground">For dental practices</div>
+                      <p className="mt-1 text-sm">
+                        Each missed call from a new private patient is worth <span className="font-bold text-foreground">£150-500</span>.
+                        74% of patients who hit voicemail call the next practice instead.
+                      </p>
+                    </div>
+                    <div className="rounded-2xl border border-border/60 bg-card/40 p-4">
+                      <div className="text-xs font-bold text-muted-foreground">The comparison</div>
+                      <p className="mt-1 text-sm">
+                        A part-time receptionist costs <span className="font-bold text-foreground">£900-1,200/month</span> through an agency.
+                        BlockNow costs less, works 24/7, and handles unlimited simultaneous calls.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -403,28 +519,52 @@ export default function Home() {
             <div id="faq" className="mt-16 sm:mt-20">
               <SectionHeading
                 eyebrow="FAQ"
-                title="Quick answers"
-                description="If you're exploring BlockNow, these are the questions we hear most."
+                title="Common questions"
+                description="Everything practice managers ask before getting started."
                 data-testid="faq-heading"
               />
 
               <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-5" data-testid="faq-grid">
                 {[
                   {
-                    q: "Is BlockNow industry-specific?",
-                    a: "No. The booking flow is industry-agnostic and can be tailored to your service types and policies.",
+                    q: "Does it work with EMIS or SystmOne?",
+                    a: "The AI books directly into your Google Calendar or Outlook. Your reception team transfers bookings to EMIS/SystmOne as part of their normal workflow. Direct integration is on our roadmap.",
                   },
                   {
-                    q: "Will it reduce queue and delays?",
-                    a: "Yes. Your AI agent can handle multiple client conversations at once—instantly—without hold times.",
+                    q: "Is it GDPR compliant?",
+                    a: "Yes. All data is hosted in the UK, encrypted at rest and in transit. We do not share patient data with third parties. ICO registration is in progress.",
                   },
                   {
-                    q: "What about human errors?",
-                    a: "Standardised flows reduce missed details, miscommunication, and manual booking mistakes.",
+                    q: "How long does setup take?",
+                    a: "Less than a week. We configure the AI with your practice details, connect your calendar, and test everything before going live. Your team doesn't need to do anything technical.",
+                  },
+                  {
+                    q: "Will it replace our reception staff?",
+                    a: "No — it supports them. The AI handles the calls your team can't get to: the 8am rush, lunch hour, after hours, and when the desk is busy with patients in the surgery.",
+                  },
+                  {
+                    q: "What about urgent or emergency calls?",
+                    a: "If a patient mentions an emergency, the AI immediately directs them to call 999. For urgent clinical queries, it advises them to ring back during surgery hours to speak with a member of staff.",
+                  },
+                  {
+                    q: "How much will we save compared to hiring?",
+                    a: "A part-time receptionist through an agency costs £900-1,200/month. BlockNow is £499/month management plus infrastructure — and it works 24/7 without sick days, holidays, or training.",
+                  },
+                  {
+                    q: "Can patients tell it's AI?",
+                    a: "The voice is completely natural — most patients don't realise they're speaking to AI. No robotic voice, no 'press 1 for...' menus. It's a natural conversation that ends with a booked appointment.",
+                  },
+                  {
+                    q: "What if the AI can't handle a question?",
+                    a: "For anything outside booking, rescheduling, or cancelling — prescriptions, test results, clinical questions — the AI politely directs the patient to ring back during surgery hours.",
                   },
                   {
                     q: "Is it available 24/7?",
-                    a: "Yes. Always-on coverage means clients can book even outside office hours.",
+                    a: "Yes. Patients can book evenings, weekends, and bank holidays. The AI only offers appointment slots within your actual opening hours.",
+                  },
+                  {
+                    q: "What languages does it support?",
+                    a: "Currently English (British). Additional language support is planned for future releases.",
                   },
                 ].map((item) => (
                   <div
@@ -450,10 +590,10 @@ export default function Home() {
                         Ready when you are
                       </div>
                       <h3 className="mt-3 text-2xl sm:text-3xl font-bold leading-tight" data-testid="final-cta-title">
-                        See BlockNow in action — tailored to your business.
+                        See BlockNow in action — tailored to your practice.
                       </h3>
                       <p className="mt-2 text-sm text-muted-foreground max-w-2xl" data-testid="final-cta-subtitle">
-                        Share your preferred date and we’ll set up a demo slot. No waiting. No confusion. Just bookings.
+                        We'll demo the AI receptionist live with your practice name and your opening hours. Free setup for the first 5 practices.
                       </p>
                     </div>
 
@@ -462,7 +602,7 @@ export default function Home() {
                         context="site"
                         trigger={
                           <NeonButton data-testid="final-cta-demo" className="h-12 w-fit sm:w-auto px-6">
-                            Request a demo
+                            Book a free demo
                             <ArrowRight className="h-4 w-4 ml-2" />
                           </NeonButton>
                         }
@@ -480,7 +620,7 @@ export default function Home() {
                         "
                         data-testid="final-cta-contact"
                       >
-                        Contact
+                        Contact us
                       </Link>
                     </div>
                   </div>

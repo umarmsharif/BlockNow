@@ -10,15 +10,13 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SectionHeading } from "@/components/SectionHeading";
 import { DemoRequestDialog } from "@/components/DemoRequestDialog";
 import { NeonButton } from "@/components/NeonButton";
-import { Button } from "@/components/ui/button";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 function usePageSeo() {
   React.useEffect(() => {
     applySeo({
-      title: "Contact BlockNow — Email, phone & address",
+      title: "Contact BlockNow — Email & demo request",
       description:
-        "Get in touch with BlockNow. Find our email, phone, address, and request a demo slot for our AI booking agent.",
+        "Get in touch with BlockNow. Email us or request a demo of our AI receptionist for GP practices and dental clinics.",
     });
   }, []);
 }
@@ -84,7 +82,7 @@ export default function Contact() {
             <SectionHeading
               eyebrow="Contact"
               title="Talk to BlockNow"
-              description="Email, phone, address—and a fast demo request form. Choose what’s easiest."
+              description="Email us or request a demo. We'll respond within one working day."
               data-testid="contact-heading"
             />
           </div>
@@ -108,7 +106,7 @@ export default function Contact() {
               <InfoCard
                 testId="contact-card-mobile"
                 icon={<Phone className="h-5 w-5" />}
-                label="Mobile"
+                label="Mobile / WhatsApp"
                 value={CONTACT.mobile}
                 href={`tel:${CONTACT.mobile.replace(/\s+/g, "")}`}
               />
@@ -125,43 +123,29 @@ export default function Contact() {
                 value={`Registered in the ${CONTACT.registeredIn}`}
               />
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <span>
-                      <Button
-                        type="button"
-                        variant="secondary"
-                        onClick={() => {
-                          if (!waHref) return;
-                          window.open(waHref, "_blank", "noopener,noreferrer");
-                        }}
-                        disabled={!waHref}
-                        data-testid="contact-whatsapp"
-                        className="
-                          h-12 w-full rounded-xl
-                          border border-border/70 bg-secondary/70 hover:bg-secondary
-                          transition-all duration-200
-                        "
-                      >
-                        <MessageCircle className="h-4 w-4 mr-2" />
-                        WhatsApp
-                        <ArrowRight className="h-4 w-4 ml-2 opacity-70" />
-                      </Button>
-                    </span>
-                  </TooltipTrigger>
-                  <TooltipContent className="max-w-xs bg-popover/90 backdrop-blur border border-border/70">
-                    {waHref ? (
-                      <p className="text-sm">Open WhatsApp Web</p>
-                    ) : (
-                      <p className="text-sm">
-                        WhatsApp number not set. Update <span className="font-semibold">WHATSAPP_E164</span> in{" "}
-                        <span className="font-semibold">client/src/lib/contact.ts</span>.
-                      </p>
-                    )}
-                  </TooltipContent>
-                </Tooltip>
+              {waHref && (
+                <div className="pt-2">
+                  <a
+                    href={waHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="
+                      inline-flex items-center justify-center h-12 w-full
+                      rounded-xl border border-border/70 bg-card/60 backdrop-blur
+                      text-sm font-semibold
+                      hover:bg-card/80 hover:-translate-y-0.5 active:translate-y-0
+                      transition-all duration-200
+                    "
+                    data-testid="contact-whatsapp"
+                  >
+                    <MessageCircle className="h-4 w-4 mr-2" />
+                    WhatsApp us
+                    <ArrowRight className="h-4 w-4 ml-2 opacity-70" />
+                  </a>
+                </div>
+              )}
 
+              <div className="pt-2">
                 <Link
                   href="/"
                   className="
@@ -187,10 +171,10 @@ export default function Contact() {
                         Request a demo
                       </div>
                       <h2 className="mt-2 text-2xl sm:text-3xl font-bold leading-tight" data-testid="contact-form-title">
-                        Book a preferred slot — we’ll confirm by email.
+                        See BlockNow in action for your practice.
                       </h2>
                       <p className="mt-2 text-sm text-muted-foreground leading-relaxed" data-testid="contact-form-subtitle">
-                        Share the date you want, and a few details about your business. We’ll follow up with next steps.
+                        Share a preferred date and a few details about your practice. We'll follow up to schedule a 15-minute live demo.
                       </p>
                     </div>
                   </div>
@@ -220,7 +204,7 @@ export default function Contact() {
                       >
                         {CONTACT.email}
                       </a>{" "}
-                      and we’ll respond as soon as possible.
+                      and we'll respond within one working day.
                     </p>
                   </div>
                 </div>
