@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Link } from "wouter";
-import { Mail, Phone, MapPin, ShieldCheck, MessageCircle, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin, ShieldCheck, ArrowRight } from "lucide-react";
 
 import { applySeo } from "@/lib/seo";
-import { CONTACT, getWhatsAppHref } from "@/lib/contact";
+import { CONTACT } from "@/lib/contact";
 
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -70,8 +70,6 @@ function InfoCard({
 
 export default function Contact() {
   usePageSeo();
-  const waHref = getWhatsAppHref();
-
   return (
     <div className="min-h-screen bg-mesh noise-overlay">
       <SiteHeader />
@@ -106,7 +104,7 @@ export default function Contact() {
               <InfoCard
                 testId="contact-card-mobile"
                 icon={<Phone className="h-5 w-5" />}
-                label="Mobile / WhatsApp"
+                label="Mobile"
                 value={CONTACT.mobile}
                 href={`tel:${CONTACT.mobile.replace(/\s+/g, "")}`}
               />
@@ -122,28 +120,6 @@ export default function Contact() {
                 label="Registered"
                 value={`Registered in the ${CONTACT.registeredIn}`}
               />
-
-              {waHref && (
-                <div className="pt-2">
-                  <a
-                    href={waHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="
-                      inline-flex items-center justify-center h-12 w-full
-                      rounded-xl border border-border/70 bg-card/60 backdrop-blur
-                      text-sm font-semibold
-                      hover:bg-card/80 hover:-translate-y-0.5 active:translate-y-0
-                      transition-all duration-200
-                    "
-                    data-testid="contact-whatsapp"
-                  >
-                    <MessageCircle className="h-4 w-4 mr-2" />
-                    WhatsApp us
-                    <ArrowRight className="h-4 w-4 ml-2 opacity-70" />
-                  </a>
-                </div>
-              )}
 
               <div className="pt-2">
                 <Link

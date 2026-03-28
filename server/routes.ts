@@ -3,7 +3,7 @@ import type { Server } from "http";
 import { api } from "@shared/routes";
 import { z } from "zod";
 import { storage } from "./storage";
-const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || "umarmsharif@gmail.com";
+const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || "umarjamilsharif@gmail.com";
 
 async function sendEmailNotification(input: {
   firstName: string;
