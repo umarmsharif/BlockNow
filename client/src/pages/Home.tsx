@@ -450,11 +450,12 @@ export default function Home() {
                         £0 <span className="text-base font-semibold text-muted-foreground">setup</span>
                       </div>
                       <div className="mt-1 text-2xl font-bold">
-                        £499<span className="text-base font-semibold text-muted-foreground">/month</span>
+                        £699<span className="text-base font-semibold text-muted-foreground">/month</span>
+                        <span className="text-xs font-normal text-muted-foreground ml-1">management</span>
                       </div>
                     </div>
                     <p className="mt-3 text-sm text-muted-foreground">
-                      + infrastructure costs (~£200-400/mo based on call volume, billed transparently)
+                      + system infrastructure costs on top (~£200-400/mo for telephony &amp; AI minutes, passed through at cost)
                     </p>
                     <ul className="mt-5 space-y-2">
                       {[
@@ -548,7 +549,7 @@ export default function Home() {
                   },
                   {
                     q: "How much will we save compared to hiring?",
-                    a: "A part-time receptionist through an agency costs £900-1,200/month. BlockNow is £499/month management plus infrastructure — and it works 24/7 without sick days, holidays, or training.",
+                    a: "A part-time receptionist through an agency costs £900-1,200/month. BlockNow is £699/month management plus system infrastructure on top — and it works 24/7 without sick days, holidays, or training.",
                   },
                   {
                     q: "Can patients tell it's AI?",

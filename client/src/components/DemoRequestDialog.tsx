@@ -97,7 +97,7 @@ export function DemoRequestDialog({
                               <User2 className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                               <Input
                                 {...field}
-                                placeholder="Aisha"
+                                placeholder="Sarah"
                                 className="pl-9 rounded-xl bg-background/70 border-2 border-border/70 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all"
                                 data-testid="demo-firstName"
                               />
@@ -118,7 +118,7 @@ export function DemoRequestDialog({
                               <User2 className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                               <Input
                                 {...field}
-                                placeholder="Khan"
+                                placeholder="Thompson"
                                 className="pl-9 rounded-xl bg-background/70 border-2 border-border/70 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all"
                                 data-testid="demo-lastName"
                               />
