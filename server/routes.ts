@@ -27,7 +27,7 @@ async function sendEmailNotification(input: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      from: "BlockNow <onboarding@resend.dev>",
+      from: "BlockNow <noreply@blocknow.co.uk>",
       to: [NOTIFY_EMAIL],
       subject: `New Demo Request from ${input.firstName} ${input.lastName}`,
       html: `
