@@ -11,7 +11,7 @@ const demoRequestSchema = z.object({
   otherInfo: z.string().optional(),
 });
 
-const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || "umarjamilsharif@gmail.com";
+const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || "umarmsharif@gmail.com";
 
 async function sendEmailNotification(input: z.infer<typeof demoRequestSchema>) {
   const resendKey = process.env.RESEND_API_KEY;
