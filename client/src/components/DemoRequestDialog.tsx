@@ -71,12 +71,12 @@ export function DemoRequestDialog({
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent
         className={cn(
-          "max-w-2xl p-0 overflow-hidden border border-border/70",
+          "max-w-2xl p-0 border border-border/70",
           "bg-mesh",
         )}
         data-testid={`demo-dialog-${context}`}
       >
-        <div className="p-6 sm:p-7 pt-8 sm:pt-9">
+        <div className="p-4 sm:p-6 pt-6 sm:pt-7">
           <DialogHeader>
             <DialogTitle className="text-2xl sm:text-3xl leading-tight">
               Request a <span className="text-gradient">demo</span>
@@ -241,7 +241,7 @@ export function DemoRequestDialog({
                             <Textarea
                               {...field}
                               placeholder="Current booking volume, industry, tools you use, languages you support…"
-                              className="min-h-[110px] pl-9 rounded-xl bg-background/70 border-2 border-border/70 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all resize-none"
+                              className="min-h-[70px] pl-9 rounded-xl bg-background/70 border-2 border-border/70 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all resize-none"
                               data-testid="demo-otherInfo"
                             />
                           </div>
