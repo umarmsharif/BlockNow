@@ -27,6 +27,12 @@ export function DemoRequestDialog({
 }) {
   const { toast } = useToast();
   const create = useCreateDemoRequest();
+  const [open, setOpen] = React.useState(defaultOpen ?? false);
+
+  const handleOpenChange = (value: boolean) => {
+    setOpen(value);
+    onOpenChange?.(value);
+  };
 
   const form = useForm<DemoRequest>({
     resolver: zodResolver(demoRequestSchema),
@@ -50,7 +56,7 @@ export function DemoRequestDialog({
         description: res.message,
       });
       form.reset();
-      onOpenChange?.(false);
+      handleOpenChange(false);
     } catch (e) {
       toast({
         title: "Could not send request",
@@ -61,7 +67,7 @@ export function DemoRequestDialog({
   };
 
   return (
-    <Dialog defaultOpen={defaultOpen} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent
         className={cn(
