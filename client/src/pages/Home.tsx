@@ -25,7 +25,35 @@ import { BenefitCard } from "@/components/BenefitCard";
 import { DemoRequestDialog } from "@/components/DemoRequestDialog";
 import { NeonButton } from "@/components/NeonButton";
 import { Button } from "@/components/ui/button";
+import { Volume2, VolumeX } from "lucide-react";
 import heroVideo from "@assets/Suggestion_2_1770294627865.mp4";
+
+function useHeroVoice() {
+  const [played, setPlayed] = React.useState(false);
+  const [muted, setMuted] = React.useState(false);
+  const audioRef = React.useRef<HTMLAudioElement | null>(null);
+
+  React.useEffect(() => {
+    if (played) return;
+    const timer = setTimeout(() => {
+      const audio = new Audio("/hero-voice.mp3");
+      audio.volume = 0.7;
+      audioRef.current = audio;
+      audio.play().catch(() => {});
+      setPlayed(true);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, [played]);
+
+  const toggle = () => {
+    if (audioRef.current) {
+      audioRef.current.muted = !audioRef.current.muted;
+      setMuted(!muted);
+    }
+  };
+
+  return { muted, toggle };
+}
 
 function usePageSeo() {
   React.useEffect(() => {
@@ -56,6 +84,7 @@ function Pill({ children, testId }: { children: React.ReactNode; testId: string 
 
 export default function Home() {
   usePageSeo();
+  const { muted, toggle: toggleVoice } = useHeroVoice();
 
   const heroId = "hero";
 
@@ -162,6 +191,14 @@ export default function Home() {
                       data-testid="hero-video"
                     />
 
+                    <button
+                      onClick={toggleVoice}
+                      className="absolute top-3 right-3 z-[3] h-8 w-8 rounded-full bg-background/70 backdrop-blur border border-border/60 grid place-items-center hover:bg-background/90 transition-all"
+                      aria-label={muted ? "Unmute" : "Mute"}
+                    >
+                      {muted ? <VolumeX className="h-4 w-4 text-muted-foreground" /> : <Volume2 className="h-4 w-4 text-accent" />}
+                    </button>
+
                     <div className="absolute bottom-4 left-4 right-4 z-[2]">
                       <div className="glass rounded-2xl border border-border/70 p-4">
                         <div className="flex items-start gap-3">
@@ -170,7 +207,7 @@ export default function Home() {
                           </div>
                           <div className="flex-1">
                             <div className="text-sm font-bold" data-testid="hero-card-title">
-                              "Good morning — I can book that for you."
+                              "Good morning, this is BlockNow Medical, how can I help you today?"
                             </div>
                             <p className="mt-1 text-xs text-muted-foreground leading-relaxed" data-testid="hero-card-body">
                               An AI receptionist that answers patient calls, handles enquiries, and confirms the next available appointment in seconds.
