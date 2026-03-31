@@ -58,9 +58,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     const input = demoRequestSchema.parse(req.body);
 
-    sendEmailNotification(input).catch((err) =>
-      console.error("Failed to send email notification:", err)
-    );
+    try {
+      await sendEmailNotification(input);
+    } catch (err) {
+      console.error("Failed to send email notification:", err);
+    }
 
     return res.status(201).json({
       ok: true,

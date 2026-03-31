@@ -165,8 +165,8 @@ export default function Home() {
                         shadow-[0_18px_60px_hsl(var(--foreground)/0.06)]
                       "
                     >
-                      <div className="flex items-center gap-2 text-sm font-semibold whitespace-nowrap">
-                        <span className="text-accent">{m.icon}</span>
+                      <div className="flex items-center gap-2 text-sm font-semibold">
+                        <span className="text-accent shrink-0">{m.icon}</span>
                         <span>{m.label}</span>
                       </div>
                     </div>
