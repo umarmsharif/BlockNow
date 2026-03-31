@@ -13,10 +13,11 @@ const demoRequestSchema = z.object({
 
 const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || "umarmsharif@gmail.com";
 
-async function sendEmailNotification(input: z.infer<typeof demoRequestSchema>): Promise<{ sent: boolean; debug: string }> {
+async function sendEmailNotification(input: z.infer<typeof demoRequestSchema>) {
   const resendKey = process.env.RESEND_API_KEY;
   if (!resendKey) {
-    return { sent: false, debug: "RESEND_API_KEY not set" };
+    console.warn("RESEND_API_KEY not set, skipping email notification");
+    return;
   }
 
   const res = await fetch("https://api.resend.com/emails", {
@@ -43,11 +44,10 @@ async function sendEmailNotification(input: z.infer<typeof demoRequestSchema>): 
     }),
   });
 
-  const body = await res.text();
   if (!res.ok) {
-    return { sent: false, debug: `Resend ${res.status}: ${body}` };
+    const body = await res.text();
+    console.error("Failed to send email via Resend:", res.status, body);
   }
-  return { sent: true, debug: body };
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -58,17 +58,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     const input = demoRequestSchema.parse(req.body);
 
-    let emailResult = { sent: false, debug: "unknown error" };
     try {
-      emailResult = await sendEmailNotification(input);
+      await sendEmailNotification(input);
     } catch (err) {
-      emailResult = { sent: false, debug: String(err) };
+      console.error("Failed to send email notification:", err);
     }
 
     return res.status(201).json({
       ok: true,
       message: "Thanks — we received your request. We'll contact you by email shortly.",
-      _debug: emailResult,
     });
   } catch (err) {
     if (err instanceof z.ZodError) {
